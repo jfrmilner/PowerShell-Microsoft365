@@ -7,7 +7,7 @@ Example: Jess is moved to the cloud. After the move, she requests Full Access pe
 Description: FullAccess Permissions are added to on-premises mailbox (Geoff) by using Add-MailboxPermissions but because Jess is a Mail User in the on-premises environment Exchanges unfortunately skips auto-mapping.
 Cause: The Active Directory (AD) attribute msExchDelegateListLink is not populated when Full Mailbox permissions are applied in the above scenario. This attribute provides the list of users used for auto-mapping of mailboxes in Outlook.
 
-Testing with Exchange 2013 CU20
+Tested with Exchange 2013 CU20
 
 #>
 
