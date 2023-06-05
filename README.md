@@ -1,4 +1,4 @@
-# PowerShell - Office 365
+# PowerShell - Microsoft 365
 
 ### Scripts
 |**Name**|**Service**|**Category**|**Description**|**Note**|
