@@ -12,7 +12,9 @@ function New-IndividualMigrationBatch {
     }
     .NOTES
     Auth: jfrmilner
-    Date: 2018-11
+    Version     Date        Comment
+    1.0         2018-11     Initial Release.
+    1.1         2023-06     Removed BadItem Limit. Batches will default to Data Consistency Score (DCS).
     #>
     param (
         [parameter(Mandatory)]
@@ -28,7 +30,7 @@ function New-IndividualMigrationBatch {
 	}#begin
     process {
         try {
-            
+
             if ($migrationEndpointOnPrem) {
                 $migrationEndpointOnPrem = Get-MigrationEndpoint -Identity $migrationEndpointOnPrem -ErrorAction Stop
             } else {
@@ -45,7 +47,7 @@ function New-IndividualMigrationBatch {
             # Import temp csv file
             Import-Csv -Path $CSVFile
             # Create Migration Batch
-            New-MigrationBatch -Name $mailbox -CSVData ([System.IO.File]::ReadAllBytes($CSVFile)) -AutoStart -SourceEndpoint $MigrationEndpointOnprem.Identity -TargetDeliveryDomain $targetDeliveryDomain -BadItemLimit 50 -CompleteAfter ((Get-Date).AddDays(110).ToUniversalTime()) -NotificationEmails $notificationEmails
+            New-MigrationBatch -Name $mailbox -CSVData ([System.IO.File]::ReadAllBytes($CSVFile)) -AutoStart -SourceEndpoint $MigrationEndpointOnprem.Identity -TargetDeliveryDomain $targetDeliveryDomain -CompleteAfter ((Get-Date).AddDays(110).ToUniversalTime()) -NotificationEmails $notificationEmails
           }
           catch [system.exception] {
             Write-Host '$_ is' $_
