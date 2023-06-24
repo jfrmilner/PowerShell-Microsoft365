@@ -10,7 +10,7 @@ Example: 10/09/2018 19:04:56 [AM6PR04MB5191] A corrupted item was encountered: F
 function Test-MailboxMigrationHealth {
     <#
       .SYNOPSIS
-      Performs tests against a given Mailbox to determine suitability for migration to Exchange Online (Office 365) in a Hybrid configuration.  
+      Performs tests against a given Mailbox to determine suitability for migration to Exchange Online (Office 365) in a Hybrid configuration.
       .EXAMPLE
       Test-MailboxMigrationHealth -mailbox "john.milner@jfrmilner.co.uk" -validSMTPAddresses "(@jfrmilner.mail.onmicrosoft.com$|@jfrmilner.co.uk$)" -Verbose
       .EXAMPLE
@@ -18,17 +18,17 @@ function Test-MailboxMigrationHealth {
       $mailboxes = "john.milner@jfrmilner.co.uk", "roy.milner@jfrmilner.co.uk", "josie.taylor@jfrmilner.co.uk"
       $reportMigHealth = $mailboxes | % {Test-MailboxMigrationHealth -mailbox $_ -validSMTPAddresses "(@jfrmilner.mail.onmicrosoft.com$|@jfrmilner.co.uk$)" -Verbose}
       $reportMigHealth | fl
-      
+
       Batch test mailboxes
       .NOTES
-      https://github.com/jfrmilner/PowerShell-Office365
+      https://github.com/jfrmilner/PowerShell-Microsoft365
     #>
         [CmdletBinding()]
         param (
             $mailbox,
             $validSMTPAddresses
         )
-    
+
         begin {
         }#begin
         process {
@@ -41,9 +41,9 @@ function Test-MailboxMigrationHealth {
                             "mailbox" = $mb.PrimarySmtpAddress
                             "healthy" = ""
                             "disabledUsers" = ""
-                            "invalidSMTPAddresses" = ""           
+                            "invalidSMTPAddresses" = ""
                         }
-            
+
                         #Exclude system folders
                         $exclusions = @("/Audits",
                                         "/Calendar Logging",
@@ -56,10 +56,10 @@ function Test-MailboxMigrationHealth {
                                         "/Sync Issues/Server Failures",
                                         "/Versions"
                                         )
-            
+
                         #Array of Mailbox Folders
                         $mailboxfolders = @(Get-MailboxFolderStatistics $mb | ? {!($exclusions -icontains $_.FolderPath)} | Select FolderPath)
-            
+
                         #Get Folder Permissions
                         $progress = 0
                         $mailboxFolderPermissions = foreach ($mailboxfolder in $mailboxfolders) {
@@ -70,10 +70,10 @@ function Test-MailboxMigrationHealth {
                             if ($folder -match "Top of Information Store") {
                             $folder = $folder.Replace("Top of Information Store","")
                             }
-                            $identity = "$($mb.PrimarySmtpAddress):$folder" 
+                            $identity = "$($mb.PrimarySmtpAddress):$folder"
                             Get-MailboxFolderPermission -Identity $identity
                         }
-            
+
                         #Check ACL for disabled users
                         $mailboxFolderPermissionsUsers = $mailboxFolderPermissions.User.ADRecipient.DistinguishedName | Group-Object -NoElement
                         $progress = 0
@@ -87,9 +87,9 @@ function Test-MailboxMigrationHealth {
                             $results.disabledUsers = $disabledUsers
                             #Warning to Console
                             $disabledUsers | % { Write-Warning -Message "Disabled User $($_.UserPrincipalName.ToLower()) has ACL Entries on this Mailbox" }
-                            
+
                         }
-            
+
                         #SMTP Address Check
                         $SmtpAddress = $mb.emailaddresses.SmtpAddress
                         $invalidSMTPAddresses = $SmtpAddress -notmatch $validSMTPAddresses
@@ -99,9 +99,9 @@ function Test-MailboxMigrationHealth {
                             #Warning to console
                             $invalidSMTPAddresses | % { Write-Warning -Message "Invalid SMTP Address Found: $($_)" }
                         }
-            
+
                     }
-        
+
                 }#try
               catch [system.exception] {
                 Write-Host '$_ is' $_
@@ -132,24 +132,24 @@ function Test-MailboxMigrationHealth {
 function Remove-UserMailboxFolderPermission {
     <#
         .SYNOPSIS
-        Performs the removal of User Mailbox Permissions. Typically used in conjunction with Test-MailboxMigrationHealth, passing the output of that command to this one for processing. 
+        Performs the removal of User Mailbox Permissions. Typically used in conjunction with Test-MailboxMigrationHealth, passing the output of that command to this one for processing.
         .EXAMPLE
         Remove-UserMailboxFolderPermission -user john.milner@jfrmilner.co.uk -identity roy.milner@jfrmilner.co.uk -Verbose
         .EXAMPLE
         #Batch test mailboxes
         $mailboxes = "john.milner@jfrmilner.co.uk", "roy.milner@jfrmilner.co.uk", "josie.taylor@jfrmilner.co.uk"
         $reportMigHealth = $mailboxes | % {Test-MailboxMigrationHealth -mailbox $_ -validSMTPAddresses "(@jfrmilner.mail.onmicrosoft.com$|@jfrmilner.co.uk$)" -Verbose}
-    
+
         foreach ($mb in ($reportMigHealth | ? { $_.disabledUsers.Length -gt 1 })) {
             foreach ($disabledUser in $mb.disabledUsers) {
                 Remove-UserMailboxFolderPermission -user $disabledUser.UserPrincipalName -identity $mb.mailbox.Address -Verbose -WhatIf
-            }   
+            }
         }
-        
+
         Batch removal of User Mailbox Permissions
         .NOTES
         https://github.com/jfrmilner/PowerShell-Office365
-    
+
     #>
         [cmdletbinding(ConfirmImpact = 'Medium', SupportsShouldProcess)]
         param (
@@ -157,7 +157,7 @@ function Remove-UserMailboxFolderPermission {
             $identity,
             $logPath = "$env:TEMP\Remove-UserMailboxFolderPermission.csv"
         )
-    
+
         begin {
         }#begin
         process {
@@ -177,7 +177,7 @@ function Remove-UserMailboxFolderPermission {
                         "break 2"
                         break
                     }
-        
+
                     #Exclude system folders
                     $exclusions = @("/Audits",
                         "/Calendar Logging",
@@ -190,10 +190,10 @@ function Remove-UserMailboxFolderPermission {
                         "/Sync Issues/Server Failures",
                         "/Versions"
                         )
-        
+
                     #Array of Mailbox Folders
                     $mailboxfolders = @(Get-MailboxFolderStatistics -Identity $identity | ? {!($exclusions -icontains $_.FolderPath)} | Select FolderPath)
-        
+
                     foreach ($mailboxfolder in $mailboxfolders) {
                         #Modify Folder Path String where required
                         $folder = $mailboxfolder.FolderPath.Replace("/","\")
@@ -202,7 +202,7 @@ function Remove-UserMailboxFolderPermission {
                             $folder = $folder.Replace("Top of Information Store","")
                         }
                         $identityFolder = "$($identity.PrimarySmtpAddress):$folder"
-        
+
                         #Check folder permissions and remove $user if found
                         $mbp = Get-MailboxFolderPermission -Identity $identityFolder -User $user -ErrorAction SilentlyContinue
                         if ($mbp) {
@@ -210,7 +210,7 @@ function Remove-UserMailboxFolderPermission {
                                 if ($PSCmdlet.ShouldProcess("$identityFolder for user $user.",'Remove-MailboxFolderPermission')) {
                                     Remove-MailboxFolderPermission -Identity $identityFolder -User $User -Confirm:$false -ErrorAction Stop #-WhatIf
                                     #Create Log Entry (Can be used to undo changes)
-                                    $logEntry = [PSCustomObject][ordered]@{ "DateTime" = (Get-Date).ToString("s") ; "IdentityFolder" = $identityFolder ;  "User" = $user.PrimarySmtpAddress.Address ; "AccessRights" = [String]$mbp.AccessRights } 
+                                    $logEntry = [PSCustomObject][ordered]@{ "DateTime" = (Get-Date).ToString("s") ; "IdentityFolder" = $identityFolder ;  "User" = $user.PrimarySmtpAddress.Address ; "AccessRights" = [String]$mbp.AccessRights }
                                     $logEntry | Export-Csv -Path $logPath -NoTypeInformation -Append
                                     Write-Verbose "Removed mailbox folder permission $($logEntry.AccessRights) on $($logEntry.IdentityFolder) for user $($logEntry.User)"
                                 }
@@ -222,7 +222,7 @@ function Remove-UserMailboxFolderPermission {
                             Write-Verbose "No folder permission(s) found on folder $identityFolder for user $user"
                         }
                     }
-        
+
                 }#try
                 catch [system.exception] {
                     Write-Host '$_ is' $_

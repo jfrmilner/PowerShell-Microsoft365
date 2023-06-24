@@ -11,10 +11,11 @@ function New-IndividualMigrationBatch {
         New-IndividualMigrationBatch -mailbox $mailbox -targetDeliveryDomain 'jfrmilner.mail.onmicrosoft.com' -notificationEmails "john.milner@jfrmilner.co.uk"
     }
     .NOTES
-    Auth: jfrmilner
+    Auth: jfrmilner - https://github.com/jfrmilner/PowerShell-Microsoft365
     Version     Date        Comment
     1.0         2018-11     Initial Release.
     1.1         2023-06     Removed BadItem Limit. Batches will default to Data Consistency Score (DCS).
+
     #>
     param (
         [parameter(Mandatory)]
