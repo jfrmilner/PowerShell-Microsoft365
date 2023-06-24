@@ -1,6 +1,11 @@
 # PowerShell - Microsoft 365
 
-### Scripts
+### Security and Compliance
+|**Name**|**Service**|**Category**|**Description**|
+|---|---|---|---|
+|[Report-PurviewRetentionPolicies.ps1](https://github.com/jfrmilner/PowerShell-Microsoft365/blob/master/Scripts/Security%20and%20Compliance/Report-PurviewRetentionPolicies.ps1)|Purview|DLM|Export Retention Policies Hold Tracking information from the Mailbox Diagnostic Logs of each in scope Mailbox. This script will create two reports:<br /> 1.	Historic Hold Tracking Report. This provides a history of Holds applied to each Mailbox.<br /> 2.	Active Hold Report. This provides a truth table of active Holds on each Mailbox.|
+
+### Exchange Migrations, Transitions and Coexistence (Hybrid)
 |**Name**|**Service**|**Category**|**Description**|
 |---|---|---|---|
 |[<b>Migration-SendAsPerms</b>](https://github.com/jfrmilner/PowerShell-Microsoft365/tree/master/Scripts/Send-As%20Permissions)|EXO|Migration|These scripts help apply a workaround of using Recipient Permissions when Mailbox Permissions are not possible, usually because the target Mailbox of the Permission entry has not been migrated.|
