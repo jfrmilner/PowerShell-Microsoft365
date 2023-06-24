@@ -1,6 +1,6 @@
 # Report-PurviewRetentionPolicies.ps1
 
-Export Retention Policies Hold Tracking information from the Mailbox Diagnostic Logs of each in scope Mailbox. 
+Export Retention Policy Hold Tracking information from the Mailbox Diagnostic Logs of each in scope Mailbox. 
 This script will create two reports:<br /> 
 1.	Historic Hold Tracking Report. This provides a history of Holds applied to each Mailbox.<br />
 ![HistoricHoldTrackingReport](https://github.com/jfrmilner/PowerShell-Microsoft365/blob/master/Scripts/Security%20and%20Compliance/Report-PurviewRetentionPolicies/Images/HistoricHoldTrackingReport.jpg)
