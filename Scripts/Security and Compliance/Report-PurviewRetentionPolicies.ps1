@@ -5,7 +5,7 @@
   Export Hold Tracking information from the Mailbox Diagnostic Logs of each in scope Mailbox.
   This script will create two reports:
     1.	Historic Hold Tracking Report. This provides a history of Holds applied to each Mailbox.
-    2.	Active Hold Tracking Report. This provides a truth table of active Holds on each Mailbox.
+    2.	Active Hold Report. This provides a truth table of active Holds on each Mailbox.
 
   .NOTES
     File: Report-PurviewRetentionPolices.ps1
