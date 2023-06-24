@@ -114,4 +114,4 @@ $report = foreach ($mailbox in $mailboxes) {
 $report | Export-Csv -NoTypeInformation -Path HistoricHoldTrackingReport.csv
 #Active Hold Truth Table Report. Mailbox viewpoint.
 $mailboxPolicyProperties = $mailboxes | ForEach-Object { Get-Member -InputObject $_ -MemberType NoteProperty | Where-Object { $retentionPoliciesLookupHt.Values -contains $_.Name } } | Sort-Object -Unique
-$mailboxes | Sort-Object -Property DisplayName | Select-Object -Property ("DisplayName", "PrimarySmtpAddress", "LitigationHoldEnabled", "WhenMailboxCreated" + $mailboxPolicyProperties.Name) | Export-Csv -NoTypeInformation -Path ActiveHoldTrackingReport.csv
+$mailboxes | Sort-Object -Property DisplayName | Select-Object -Property ("DisplayName", "PrimarySmtpAddress", "LitigationHoldEnabled", "WhenMailboxCreated" + $mailboxPolicyProperties.Name) | Export-Csv -NoTypeInformation -Path ActiveHoldReport.csv
