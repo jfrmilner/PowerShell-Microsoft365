@@ -3,7 +3,7 @@
 ### Security and Compliance
 |**Name**|**Service**|**Category**|**Description**|
 |---|---|---|---|
-|[Report-PurviewRetentionPolicies](https://github.com/jfrmilner/PowerShell-Microsoft365/tree/master/Scripts/Security%20and%20Compliance/Report-PurviewRetentionPolicies)|Purview|DLM|Export Retention Policies Hold Tracking information from the Mailbox Diagnostic Logs of each in scope Mailbox. This script will create two reports:<br /> 1.	Historic Hold Tracking Report. This provides a history of Holds applied to each Mailbox.<br /> 2.	Active Hold Report. This provides a truth table of active Holds on each Mailbox.|
+|[Report-PurviewRetentionPolicies](https://github.com/jfrmilner/PowerShell-Microsoft365/tree/master/Scripts/Security%20and%20Compliance/Report-PurviewRetentionPolicies)|Purview|DLM|Export Retention Policy Hold Tracking information from the Mailbox Diagnostic Logs of each in scope Mailbox. This script will create two reports:<br /> 1.	Historic Hold Tracking Report. This provides a history of Holds applied to each Mailbox.<br /> 2.	Active Hold Report. This provides a truth table of active Holds on each Mailbox.|
 
 ### Exchange Migrations, Transitions and Coexistence (Hybrid)
 |**Name**|**Service**|**Category**|**Description**|
