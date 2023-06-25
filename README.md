@@ -9,7 +9,7 @@
 |**Name**|**Service**|**Category**|**Description**|
 |---|---|---|---|
 [Report-M365LicenceAllocationTenant.ps1](https://github.com/jfrmilner/PowerShell-Microsoft365/tree/master/Scripts/Microsoft%20Graph/Report-M365LicenceAllocationTenant#report-m365licenceallocationtenantps1)|Graph|Graph|Create Tenant level licence report|
-
+[Report-M365LicenceAllocationUser.ps1](https://github.com/jfrmilner/PowerShell-Microsoft365/tree/master/Scripts/Microsoft%20Graph/Report-M365LicenceAllocationUser)|Graph|Graph|Create User level licence report|
 ### Exchange Migrations, Transitions and Coexistence (Hybrid)
 |**Name**|**Service**|**Category**|**Description**|
 |---|---|---|---|
