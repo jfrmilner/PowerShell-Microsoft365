@@ -1,4 +1,6 @@
 # Report-PurviewRetentionPolicies.ps1
+This script is based on [How to confirm that an organization-wide retention policy is applied to a mailbox](https://learn.microsoft.com/en-us/microsoft-365/compliance/ediscovery-identify-a-hold-on-an-exchange-online-mailbox?view=o365-worldwide#how-to-confirm-that-an-organization-wide-retention-policy-is-applied-to-a-mailbox). The commands detailed have been extended to automatically perform translation of policy types and GUIDs into a human readable format for reporting. 
+##### This script is for Exchange Online Mailbox Retention Policies only. This excludes Retention Labels and other services such as Teams. 
 
 Export Retention Policy Hold Tracking information from the Mailbox Diagnostic Logs of each in scope Mailbox. 
 This script will create two reports:<br /> 
@@ -9,3 +11,4 @@ This script will create two reports:<br />
 2.	Active Hold Report. This provides a truth table of active Holds on each Mailbox.
 ![ActiveHoldReport](https://github.com/jfrmilner/PowerShell-Microsoft365/blob/master/Scripts/Security%20and%20Compliance/Report-PurviewRetentionPolicies/Images/ActiveHoldReport.jpg)
 [Sample-ActiveHoldReport.csv](https://github.com/jfrmilner/PowerShell-Microsoft365/blob/master/Scripts/Security%20and%20Compliance/Report-PurviewRetentionPolicies/Sample/ActiveHoldReport.csv)
+
