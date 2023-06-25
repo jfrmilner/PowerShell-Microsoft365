@@ -5,6 +5,11 @@
 |---|---|---|---|
 |[Report-PurviewRetentionPolicies](https://github.com/jfrmilner/PowerShell-Microsoft365/tree/master/Scripts/Security%20and%20Compliance/Report-PurviewRetentionPolicies)|Purview|DLM|Export Retention Policy Hold Tracking information from the Mailbox Diagnostic Logs of each in scope Mailbox. This script will create two reports:<br /> 1.	Historic Hold Tracking Report. This provides a history of Holds applied to each Mailbox.<br /> 2.	Active Hold Report. This provides a truth table of active Holds on each Mailbox.|
 
+### Microsoft Graph
+|**Name**|**Service**|**Category**|**Description**|
+|---|---|---|---|
+[Report-M365LicenceAllocationTenant.ps1](https://github.com/jfrmilner/PowerShell-Microsoft365/tree/master/Scripts/Microsoft%20Graph/Report-M365LicenceAllocationTenant#report-m365licenceallocationtenantps1)|Graph|Graph|Create Tenant level licence report|
+
 ### Exchange Migrations, Transitions and Coexistence (Hybrid)
 |**Name**|**Service**|**Category**|**Description**|
 |---|---|---|---|
